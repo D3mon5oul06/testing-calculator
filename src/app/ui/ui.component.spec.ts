@@ -109,3 +109,95 @@ describe('Ui Addition - Component', () => {
 });
 //Suma------------------------
 
+//Resta------------------------
+describe('Ui Substraction - Component', () => {
+  let component: UiComponent;
+  let fixture: ComponentFixture<UiComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [UiComponent],
+      imports: [FormsModule],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UiComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('Should call substraction method', () => {
+
+    // Arrange
+    let result = 0;
+
+    // Act
+    result = substraction(0, 2);
+
+    // Assert
+    expect(result).toBe(-2);
+  })
+
+  it('Should subs 9 - 3 = 6', () => {
+    // Arrange
+    let result = 0;
+    // Act
+    result = substraction(9, 3);
+    // Assert
+    expect(result).toBe(6);
+  })
+
+  it('Should subs 3.1416 - 0.1416 = 3.0', () => {
+    // Arrange
+    let result = 0;
+    // Act
+    result = substraction(3.1416, 0.1416);
+    // Assert
+    expect(result).toBe(3.0);
+  })
+
+  it('Should subs 2.7 - 0.7 = 2.0', () => {
+    // Arrange
+    let result = 0;
+    // Act
+    result = substraction(2.7, 0.7);
+    // Assert
+    expect(result).toBe(2.0);
+  })
+
+
+  it('should substract operator1 and operator2 when i click the substraction button ', () => {
+    // Arrange
+    component.operator1 = 5.0;
+    component.operator2 = 2.5;
+    let substractionButton = fixture.debugElement.query(By.css('.substraction-button'));
+
+    // Act
+    substractionButton.triggerEventHandler('click', null);
+
+    // Assert
+    expect(component.result).toBe(2.5);
+
+  });
+
+  it('Should render substraction in result div', () => {
+    // Arrange
+    component.operator1 = 5;
+    component.operator2 = 5;
+
+    // Act
+    component.substraction();
+    fixture.detectChanges();
+
+    let de = fixture.debugElement.query(By.css('.result'));
+    let el: HTMLElement = de.nativeElement;
+
+    // Assert
+    expect(el.innerText).toContain('0');
+
+  });
+
+});
+//Resta-------------------------------------------------
