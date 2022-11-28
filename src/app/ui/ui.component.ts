@@ -57,8 +57,15 @@ export class UiComponent implements OnInit {
   }
 
   sqr() {
-    let myresult = 0;
-    myresult = exp(this.operator1, this.operator2);
+    let myresult = 1;
+    myresult = sqr(this.operator1);
     this.result = myresult;
   }
+
+  sqrt() {
+    let myresult = 1;
+    myresult = sqrt(this.operator1);
+    this.result = myresult;
+  }
+
 }
