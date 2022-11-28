@@ -455,3 +455,129 @@ describe('Ui Division - Component', () => {
   });
 })
 //Division-----------------------------------------
+
+//exp--------------------------------------------------
+describe('Ui exp - Component', () => {
+  let component: UiComponent;
+  let fixture: ComponentFixture<UiComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [UiComponent],
+      imports: [FormsModule],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UiComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('Should call exp method', () => {
+
+    it('Should set operator1 model through ngModel', async () => {
+      // Arrange 
+      await fixture.whenStable();
+      fixture.detectChanges();
+      const inputElement = fixture.debugElement.query(By.css('input[name="operator1"]')).nativeElement;
+
+      // Act 
+      inputElement.value = '3.1416';
+      inputElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      // Assert 
+      expect(component.operator1).toEqual(3.1416);
+    });
+
+    it('Should set operator2 model through ngModel', async () => {
+      // Arrange 
+      await fixture.whenStable();
+      fixture.detectChanges();
+      const inputElement = fixture.debugElement.query(By.css('input[name="operator2"]')).nativeElement;
+
+      // Act 
+      inputElement.value = '2.71';
+      inputElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      // Assert 
+      expect(component.operator2).toEqual(2.71);
+    });
+
+    it('Should pow 2 ^ 0 = 1', () => {
+      // Pattern AAA (Arrange - Act - Assert)
+
+      // Arrange
+      let result = 0;
+
+      // Act
+      result = exp(2, 0);
+
+      // Assert
+      expect(result).toBe(1);
+    })
+
+    it('Should pow 2 ^ 1 = 2', () => {
+      // Arrange
+      let result = 0;
+      // Act
+      result = exp(2, 1);
+      // Assert
+      expect(result).toBe(2);
+    })
+
+    it('Should pow 2 ^ 2 = 4', () => {
+      // Arrange
+      let result = 0;
+      // Act
+      result = exp(2, 2);
+      // Assert
+      expect(result).toBe(4);
+    })
+
+    it('Should pow 2 ^ 3 = 8', () => {
+      // Arrange
+      let result = 0;
+      // Act
+      result = exp(2, 3);
+      // Assert
+      expect(result).toBe(8);
+    })
+
+    it('should exp operator1 and operator2 when i click the exp button ', () => {
+      // Arrange
+      component.operator1 = 5.0;
+      component.operator2 = 2.5;
+      let expButton = fixture.debugElement.query(By.css('.exp-button'));
+
+      // Act
+      expButton.triggerEventHandler('click', null);
+
+      // Assert
+      expect(component.result).toBe(55.901);
+
+    });
+
+    it('Should render exp in result div', () => {
+      // Arrange
+      component.operator1 = 5;
+      component.operator2 = 5;
+
+      // Act
+      component.exp();
+      fixture.detectChanges();
+
+      let de = fixture.debugElement.query(By.css('.result'));
+      let el: HTMLElement = de.nativeElement;
+
+      // Assert
+      expect(el.innerText).toContain('3125');
+
+    });
+  })
+
+});
+//exp-------------------------------------
