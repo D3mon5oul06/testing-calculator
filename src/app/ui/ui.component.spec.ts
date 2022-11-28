@@ -201,3 +201,130 @@ describe('Ui Substraction - Component', () => {
 
 });
 //Resta-------------------------------------------------
+
+//Multiplicacion----------------------------------------
+describe('Ui multiplication - Component', () => {
+  let component: UiComponent;
+  let fixture: ComponentFixture<UiComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [UiComponent],
+      imports: [FormsModule],
+    })
+      .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(UiComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('Should call multiplication method', () => {
+
+    it('Should set operator1 model through ngModel', async () => {
+      // Arrange 
+      await fixture.whenStable();
+      fixture.detectChanges();
+      const inputElement = fixture.debugElement.query(By.css('input[name="operator1"]')).nativeElement;
+
+      // Act 
+      inputElement.value = '3.1416';
+      inputElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      // Assert 
+      expect(component.operator1).toEqual(3.1416);
+    });
+
+    it('Should set operator2 model through ngModel', async () => {
+      // Arrange 
+      await fixture.whenStable();
+      fixture.detectChanges();
+      const inputElement = fixture.debugElement.query(By.css('input[name="operator2"]')).nativeElement;
+
+      // Act 
+      inputElement.value = '2.71';
+      inputElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      // Assert 
+      expect(component.operator2).toEqual(2.71);
+    });
+
+    it('Should mul 2 * 4 = 8', () => {
+      // Pattern AAA (Arrange - Act - Assert)
+
+      // Arrange
+      let result = 0;
+
+      // Act
+      result = multiplication(2, 4);
+
+      // Assert
+      expect(result).toBe(8);
+    })
+
+    it(' Should mul 0 * -2 = 0', () => {
+      // Arrange
+      let result = 0;
+      // Act
+      result = multiplication(0, -2);
+      // Assert
+      expect(result).toBe(0);
+    })
+
+    it(' Should mul 3.0 * 0.5 = 1.5', () => {
+      // Arrange
+      let result = 0;
+      // Act
+      result = multiplication(3.0, 0.5);
+      // Assert
+      expect(result).toBe(1.5);
+    })
+
+    it(' Should mul 2.0 + 1.5 = 3.0', () => {
+      // Arrange
+      let result = 0;
+      // Act
+      result = multiplication(2.0, 1.5);
+      // Assert
+      expect(result).toBe(3.0);
+    })
+
+
+    it('should multiply operator1 and operator2 when i click the multiplication button ', () => {
+      // Arrange
+      component.operator1 = 5.0;
+      component.operator2 = 2.5;
+      let multiplicationButton = fixture.debugElement.query(By.css('.multiplication-button'));
+
+      // Act
+      multiplicationButton.triggerEventHandler('click', null);
+
+      // Assert
+      expect(component.result).toBe(12.5);
+
+    });
+
+    it('Should render multiplication in result div', () => {
+      // Arrange
+      component.operator1 = 5;
+      component.operator2 = 5;
+
+      // Act
+      component.multiplication();
+      fixture.detectChanges();
+
+      let de = fixture.debugElement.query(By.css('.result'));
+      let el: HTMLElement = de.nativeElement;
+
+      // Assert
+      expect(el.innerText).toContain('25');
+
+    });
+
+  });
+})
+//Multiplicacion----------------------------------------------
