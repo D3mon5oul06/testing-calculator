@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { addition } from "../addition/addition"
+import { substraction } from '../substraction/substraction';
+import { multiplication } from '../multiplication/multiplication';
+import { exp } from '../exp/exp';
+import { division } from '../division/division';
+import { sqr } from '../sqr/sqr';
+import { sqrt } from '../sqrt/sqrt';
 
 @Component({
   selector: 'app-ui',
@@ -7,6 +13,9 @@ import { addition } from "../addition/addition"
   styleUrls: ['./ui.component.css']
 })
 export class UiComponent implements OnInit {
+  operator3(operator3: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor() { }
 
@@ -23,8 +32,7 @@ export class UiComponent implements OnInit {
     this.result = myresult;
   }
 
-  substraction() {
-    alert("substraction here !");
-  }
+
+
 
 }
