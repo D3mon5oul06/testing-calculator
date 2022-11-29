@@ -13,6 +13,14 @@ import { sqrt } from '../sqrt/sqrt';
   styleUrls: ['./ui.component.css']
 })
 export class UiComponent implements OnInit {
+  static substraction() {
+    throw new Error('Method not implemented.');
+  }
+  static result(result: any) {
+    throw new Error('Method not implemented.');
+  }
+  static operator1: number;
+  static operator2: number;
   operator3(operator3: any) {
     throw new Error('Method not implemented.');
   }
