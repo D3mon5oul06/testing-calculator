@@ -13,6 +13,14 @@ import { sqrt } from '../sqrt/sqrt';
   styleUrls: ['./ui.component.css']
 })
 export class UiComponent implements OnInit {
+  static substraction() {
+    throw new Error('Method not implemented.');
+  }
+  static result(result: any) {
+    throw new Error('Method not implemented.');
+  }
+  static operator1: number;
+  static operator2: number;
   operator3(operator3: any) {
     throw new Error('Method not implemented.');
   }
@@ -32,7 +40,40 @@ export class UiComponent implements OnInit {
     this.result = myresult;
   }
 
+  substraction() {
+    let myresult = 0;
+    myresult = substraction(this.operator1, this.operator2);
+    this.result = myresult;
+  }
 
+  multiplication() {
+    let myresult = 0;
+    myresult = multiplication(this.operator1, this.operator2);
+    this.result = myresult;
+  }
 
+  division() {
+    let myresult = 0;
+    myresult = division(this.operator1, this.operator2);
+    this.result = myresult;
+  }
+
+  exp() {
+    let myresult = 0;
+    myresult = exp(this.operator1, this.operator2);
+    this.result = myresult;
+  }
+
+  sqr() {
+    let myresult = 1;
+    myresult = sqr(this.operator1);
+    this.result = myresult;
+  }
+
+  sqrt() {
+    let myresult = 1;
+    myresult = sqrt(this.operator1);
+    this.result = myresult;
+  }
 
 }
